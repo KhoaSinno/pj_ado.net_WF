@@ -1,0 +1,10 @@
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\bin\Debug\ProductFm.exe.config
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\bin\Debug\ProductFm.exe
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\bin\Debug\ProductFm.pdb
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.csproj.AssemblyReference.cache
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.Properties.Resources.resources
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.csproj.GenerateResource.cache
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.csproj.CoreCompileInputs.cache
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.exe
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.pdb
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.FmProduct.resources
