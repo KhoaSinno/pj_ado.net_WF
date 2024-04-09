@@ -16,7 +16,7 @@ namespace ProductFm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FmProduct());
+            Application.Run(new frmLogin());
         }
     }
 }

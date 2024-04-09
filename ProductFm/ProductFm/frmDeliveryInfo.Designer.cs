@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtReciever = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -143,7 +144,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(133, 385);
+            this.btnSave.Location = new System.Drawing.Point(31, 396);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(77, 23);
             this.btnSave.TabIndex = 12;
@@ -163,11 +164,22 @@
             this.txtReciever.Size = new System.Drawing.Size(291, 104);
             this.txtReciever.TabIndex = 13;
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(245, 396);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(77, 23);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // FmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 420);
+            this.ClientSize = new System.Drawing.Size(357, 431);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtReciever);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label6);
@@ -184,6 +196,7 @@
             this.Name = "FmProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmProduct_FormClosing);
             this.Load += new System.EventHandler(this.FmProduct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -205,6 +218,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtReciever;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

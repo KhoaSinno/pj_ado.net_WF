@@ -14,14 +14,24 @@ namespace ProductFm
 {
     public partial class FmProduct : Form
     {
+        string name;
+
         string connectionString = "Server=.\\SQLEXPRESS;Database=Ladada;Integrated Security=True";
         SqlConnection connection;
         SqlCommand cmd;
         SqlParameter param;
+
+        // constructor
         public FmProduct()
         {
             InitializeComponent();
         }
+
+        public FmProduct(string name) : this()
+        {
+            this.name = name;
+        }
+
 
         // default func
         void Clear_FormData()
@@ -45,6 +55,7 @@ namespace ProductFm
         // form load
         private void FmProduct_Load(object sender, EventArgs e)
         {
+            this.Text  = name + "Delivery Infomation";
             btnSave.Enabled = false;
 
             connection = new SqlConnection(connectionString);
@@ -232,6 +243,16 @@ namespace ProductFm
                 btnSave.Enabled = true;
             else
                 btnSave.Enabled = false;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void FmProduct_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            btnClose_Click(sender, e);
         }
     }
 }
