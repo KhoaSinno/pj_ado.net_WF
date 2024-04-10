@@ -57,7 +57,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(92, 33);
-            this.btnClose.TabIndex = 20;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -70,7 +70,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(234, 24);
-            this.txtPassword.TabIndex = 19;
+            this.txtPassword.TabIndex = 1;
             // 
             // label2
             // 
@@ -90,7 +90,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(234, 24);
-            this.txtUsername.TabIndex = 17;
+            this.txtUsername.TabIndex = 0;
             // 
             // btnLogin
             // 
@@ -99,7 +99,7 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(92, 33);
-            this.btnLogin.TabIndex = 16;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Register";
             this.btnLogin.UseVisualStyleBackColor = true;
             // 
@@ -131,9 +131,10 @@
             this.linkLabel2.Location = new System.Drawing.Point(296, 181);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(38, 15);
-            this.linkLabel2.TabIndex = 24;
+            this.linkLabel2.TabIndex = 4;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Login";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // frmRegister
             // 
@@ -150,6 +151,7 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label1);
             this.Name = "frmRegister";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegister";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegister_FormClosed);
             this.ResumeLayout(false);

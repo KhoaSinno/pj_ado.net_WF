@@ -55,7 +55,8 @@ namespace ProductFm
         // form load
         private void FmProduct_Load(object sender, EventArgs e)
         {
-            this.Text  = name + "Delivery Infomation";
+            //default value
+            this.Text  = name + " - Delivery Form";
             btnSave.Enabled = false;
 
             connection = new SqlConnection(connectionString);
@@ -185,30 +186,47 @@ namespace ProductFm
 
         }
 
+        private void assign_txtReciever()
+        {
+            string Hoten = txtHoten.Text;
+            string Sdt = txtSdt.Text;
+            string DChi = txtDChi.Text;
+            string Quan_Huyen = cboQuan_Huyen.Text;
+            string Phuong_Xa = cboPhuong_Xa.Text;
+
+            txtReciever.Text = $"Họ tên: {Hoten}{Environment.NewLine}" +
+                $"Số điện thoại: {Sdt}{Environment.NewLine}" +
+                $"Địa chỉ: {DChi}{Environment.NewLine}" +
+                $"Quận: {Quan_Huyen}{Environment.NewLine}" +
+                $"Xã: {Phuong_Xa} {Environment.NewLine}";
+        }
+       
         private void btnSave_Click(object sender, EventArgs e)
         {
             connection = new SqlConnection(connectionString);
             try
             {
                 // assign to textBox reciever
-                txtReciever.Text = $"Họ tên: {txtHoten.Text}{Environment.NewLine}"+
-                    $"Số điện thoại: {txtSdt.Text}{Environment.NewLine}" +
-                    $"Địa chỉ: {txtDChi.Text}{Environment.NewLine}" +
-                    $"Quận: {cboQuan_Huyen.Text}{Environment.NewLine}" +
-                    $"Xã: {cboPhuong_Xa.Text} {Environment.NewLine}";
+                assign_txtReciever();
 
                 connection.Open();
                 // insert data into db
                 clsQuan quan = (clsQuan)cboQuan_Huyen.SelectedItem;
 
-                string sql = "INSERT INTO Orders(Order_ID, CusName, PhoneNum, Del_info) VALUES(@Order_ID, @CusName, @PhoneNum, @Del_info)";
+                string sql = "INSERT INTO Orders(Order_ID, CusName, PhoneNum, Del_info, Cus_ID) VALUES(@Order_ID, @CusName, @PhoneNum, @Del_info, @Cus_ID)";
                 SqlCommand cmd = new SqlCommand(sql, connection);
-                string randomID = RandomIDGenerator.GenerateRandomID(5);
-                cmd.Parameters.AddWithValue("@Order_ID", Convert.ToInt32(randomID));
+                string randomID_order = 'D' + RandomIDGenerator.GenerateRandomID(5);
+                string randomID_cus = 'K' + RandomIDGenerator.GenerateRandomID(5);
+
+                cmd.Parameters.AddWithValue("@Order_ID", randomID_order);
+                cmd.Parameters.AddWithValue("@Cus_ID", randomID_cus);
+
                 cmd.Parameters.AddWithValue("@CusName",  txtHoten.Text.Trim());
                 cmd.Parameters.AddWithValue("@PhoneNum", txtSdt.Text.Trim());
                 cmd.Parameters.AddWithValue("@Del_info", txtDChi.Text.Trim());
                 cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Thêm đơn hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -217,7 +235,9 @@ namespace ProductFm
             {
                 connection.Close();
                 // clear data
+                string prevData = txtReciever.Text;
                 Clear_FormData();
+                txtReciever.Text = prevData;
             }
         }
 

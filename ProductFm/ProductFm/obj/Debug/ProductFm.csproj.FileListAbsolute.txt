@@ -10,3 +10,4 @@ D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.pdb
 D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.FmProduct.resources
 D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.frmLogin.resources
 D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.frmRegister.resources
+D:\CTUT\Subject\.NET\practice\TH2\ProductFm\ProductFm\obj\Debug\ProductFm.frmManageOrder.resources

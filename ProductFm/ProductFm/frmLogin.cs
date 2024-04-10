@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,14 +72,54 @@ namespace ProductFm
                         cmd.Parameters.AddWithValue("@inputPassword", password);
 
                         // return a string message
-                        int result = (int)cmd.ExecuteScalar();
+                        string userId = (string)cmd.ExecuteScalar();
 
-                        if(result == 1)
+                        if(userId != "-1")
                         {
                             this.Hide();
-                            Form frmDeliveryInfo = new FmProduct(txtUsername.Text);
-                            frmDeliveryInfo.Show();
-                            MessageBox.Show("Xác thực thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show("Xác thực thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            using ( cmd= new SqlCommand("usp_GetUserRoles", connection))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                // Thêm tham số cho câu truy vấn
+                                cmd.Parameters.AddWithValue("@User_ID", userId);
+
+                                // Tạo đối tượng SqlDataAdapter
+                                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                                // Tạo đối tượng DataTable để chứa kết quả
+                                DataTable dataTable = new DataTable();
+
+                                // Đổ dữ liệu từ SqlDataAdapter vào DataTable
+                                adapter.Fill(dataTable);
+
+                                string message = "";
+
+                                string userID = dataTable.Rows[0]["User_ID"].ToString();
+                                string roleName = dataTable.Rows[0]["RoleName"].ToString();
+                                string roleID = dataTable.Rows[0]["Role_ID"].ToString();
+
+                                if(roleID == "0")
+                                {
+                                    Form frmManageOrder = new frmManageOrder();
+                                    frmManageOrder.Show();
+                                }
+                                else if (roleID == "1")
+                                {
+                                    Form frmDeliveryInfo = new FmProduct(txtUsername.Text);
+                                    frmDeliveryInfo.Show();
+                                }
+
+                                message = $"User ID: {userID}, Role Name: {roleName}, Role ID: {roleID}{Environment.NewLine}";
+                                MessageBox.Show(message, "User Roles");
+
+                            }
+
+
+                            
+                            
                         } else
                         {
                             MessageBox.Show("Lỗi xác thực!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,7 +130,10 @@ namespace ProductFm
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 

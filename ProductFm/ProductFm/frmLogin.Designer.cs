@@ -46,7 +46,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(92, 33);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -59,7 +59,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(234, 24);
-            this.txtPassword.TabIndex = 10;
+            this.txtPassword.TabIndex = 1;
             // 
             // label2
             // 
@@ -79,7 +79,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(234, 24);
-            this.txtUsername.TabIndex = 8;
+            this.txtUsername.TabIndex = 0;
             // 
             // btnLogin
             // 
@@ -88,7 +88,7 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(92, 33);
-            this.btnLogin.TabIndex = 7;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
