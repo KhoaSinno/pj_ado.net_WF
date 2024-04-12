@@ -83,16 +83,12 @@ namespace ProductFm
                             {
                                 cmd.CommandType = CommandType.StoredProcedure;
 
-                                // Thêm tham số cho câu truy vấn
                                 cmd.Parameters.AddWithValue("@User_ID", userId);
 
-                                // Tạo đối tượng SqlDataAdapter
                                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
-                                // Tạo đối tượng DataTable để chứa kết quả
                                 DataTable dataTable = new DataTable();
 
-                                // Đổ dữ liệu từ SqlDataAdapter vào DataTable
                                 adapter.Fill(dataTable);
 
                                 string message = "";
@@ -108,7 +104,7 @@ namespace ProductFm
                                 }
                                 else if (roleID == "1")
                                 {
-                                    Form frmDeliveryInfo = new FmProduct(txtUsername.Text);
+                                    Form frmDeliveryInfo = new FmProduct(txtUsername.Text, userID);
                                     frmDeliveryInfo.Show();
                                 }
 

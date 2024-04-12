@@ -11,3 +11,5 @@ INNER JOIN Roles r ON r.Role_ID = ur.Role_ID
 WHERE u.User_ID = 'K12345';
 
 select * from Users
+
+select Order_ID, CusName from Orders where Status_ID = 2

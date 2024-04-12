@@ -238,11 +238,9 @@ select * from Phuong
 select * from Quan
 select * from Orders
 select * from Phuong where Quan_ID = 1 Order By Phuong
+select * from Order_Status
 
 
-select * 
-from Users u
-inner join User_Roles ur on u.
 
 
 

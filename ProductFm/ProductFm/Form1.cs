@@ -14,30 +14,13 @@ namespace ProductFm
 {
     public partial class FmProduct : Form
     {
-        // declare var global
-        string titleForm;
-        string user_ID;
-
-        // declare var impact db
         string connectionString = "Server=.\\SQLEXPRESS;Database=Ladada;Integrated Security=True";
         SqlConnection connection;
         SqlCommand cmd;
-        SqlParameter param;
-
-        // constructor
         public FmProduct()
         {
             InitializeComponent();
         }
-
-        public FmProduct(string name, string user_ID) : this()
-        {
-            this.titleForm = name;
-            this.user_ID = user_ID;
-        }
-
-
-        // default func
         void Clear_FormData()
         {
             txtDChi.Text = "";
@@ -46,8 +29,6 @@ namespace ProductFm
             txtSdt.Text = "";
             cboQuan_Huyen.SelectedIndex = 0;
         }
-
-        // validate
         bool IsEmptyData()
         {
            return string.IsNullOrWhiteSpace(txtDChi.Text) ||
@@ -55,12 +36,8 @@ namespace ProductFm
            string.IsNullOrWhiteSpace(txtSdt.Text);
 
         }
-
-        // form load
         private void FmProduct_Load(object sender, EventArgs e)
         {
-            //default value
-            this.Text  = titleForm + " - Delivery Form";
             btnSave.Enabled = false;
 
             connection = new SqlConnection(connectionString);
@@ -73,9 +50,7 @@ namespace ProductFm
                 //cmd.CommandText = sql;
                 //cmd.Connection = connection;
 
-                //cmd = ExcuteCommand("select * from Quan Order By Quan");
-                cmd = ExcuteCommand("sp_GetQuan");
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd = ExcuteCommand("select * from Quan Order By Quan");
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
@@ -99,39 +74,20 @@ namespace ProductFm
             {
                 connection.Close();
             }
-
             cboQuan_Huyen.DisplayMember = "Quan";
             cboQuan_Huyen.ValueMember = "Quan_ID";
             cboQuan_Huyen.SelectedIndex = 0;
         }
 
-        // helper function
         SqlCommand ExcuteCommand(string sqlQuery)
         {
+            string sql = sqlQuery;
             cmd = new SqlCommand();
-            cmd.CommandText = sqlQuery;
+            cmd.CommandText = sql;
             cmd.Connection = connection;
             return cmd;
         }
 
-        public SqlParameter CreateParameter(string name, SqlDbType dbType, object value, int? size = null)
-        {
-            var parameter = new SqlParameter
-            {
-                ParameterName = name,
-                SqlDbType = dbType,
-                Value = value
-            };
-
-            if (size.HasValue)
-            {
-                parameter.Size = size.Value;
-            }
-
-            return parameter;
-        }
-
-        // handle logic
         private void cboQuan_Huyen_SelectedIndexChanged(object sender, EventArgs e)
         {
             cboPhuong_Xa.Items.Clear();
@@ -143,7 +99,7 @@ namespace ProductFm
                 clsQuan quan = (clsQuan)cboQuan_Huyen.SelectedItem;
                 //MessageBox.Show(quan.Quan_ID.ToString() + "\n" + quan.Quan);
 
-                //Raw
+                //Raw 1
                 //string sql = "select * from Phuong where Quan_ID = @Quan_ID Order By Phuong";
                 //cmd = new SqlCommand();
                 //cmd.CommandText = sql;
@@ -152,14 +108,7 @@ namespace ProductFm
                 // Optimized 
                 cmd = ExcuteCommand("select * from Phuong where Quan_ID = @Quan_ID Order By Phuong");
 
-                param = CreateParameter("@Quan_ID", SqlDbType.Int, quan.Quan_ID);
-
-                //param = new SqlParameter();
-                //param.SqlDbType = SqlDbType.Int;
-                //param.ParameterName = "@Quan_ID";
-                //param.Value = quan.Quan_ID;
-                cmd.Parameters.Add(param);
-                //cmd.Parameters.AddWithValue("@Quan_ID", quan.Quan_ID);
+                cmd.Parameters.AddWithValue("@Quan_ID", quan.Quan_ID);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
@@ -190,48 +139,30 @@ namespace ProductFm
 
         }
 
-        private void assign_txtReciever()
-        {
-            string Hoten = txtHoten.Text;
-            string Sdt = txtSdt.Text;
-            string DChi = txtDChi.Text;
-            string Quan_Huyen = cboQuan_Huyen.Text;
-            string Phuong_Xa = cboPhuong_Xa.Text;
-
-            txtReciever.Text = $"Họ tên: {Hoten}{Environment.NewLine}" +
-                $"Số điện thoại: {Sdt}{Environment.NewLine}" +
-                $"Địa chỉ: {DChi}{Environment.NewLine}" +
-                $"QuậnHuyện: {Quan_Huyen}{Environment.NewLine}" +
-                $"Phường/Xã: {Phuong_Xa} {Environment.NewLine}";
-        }
-       
         private void btnSave_Click(object sender, EventArgs e)
         {
             connection = new SqlConnection(connectionString);
             try
             {
                 // assign to textBox reciever
-                assign_txtReciever();
+                txtReciever.Text = $"Họ tên: {txtHoten.Text}{Environment.NewLine}"+
+                    $"Số điện thoại: {txtSdt.Text}{Environment.NewLine}" +
+                    $"Địa chỉ: {txtDChi.Text}{Environment.NewLine}" +
+                    $"Quận: {cboQuan_Huyen.Text}{Environment.NewLine}" +
+                    $"Xã: {cboPhuong_Xa.Text} {Environment.NewLine}";
 
                 connection.Open();
                 // insert data into db
                 clsQuan quan = (clsQuan)cboQuan_Huyen.SelectedItem;
 
-                string sql = "INSERT INTO Orders(Order_ID, CusName, PhoneNum, Del_info, User_ID, Status_ID) VALUES(@Order_ID, @CusName, @PhoneNum, @Del_info, @User_ID, @Status_ID)";
+                string sql = "INSERT INTO Orders(Order_ID, CusName, PhoneNum, Del_info) VALUES(@Order_ID, @CusName, @PhoneNum, @Del_info)";
                 SqlCommand cmd = new SqlCommand(sql, connection);
-                string randomID_order = 'D' + RandomIDGenerator.GenerateRandomID(5);
-                //string randomID_cus = 'K' + RandomIDGenerator.GenerateRandomID(5);
-
-                cmd.Parameters.AddWithValue("@Order_ID", randomID_order);
+                string randomID = RandomIDGenerator.GenerateRandomID(5);
+                cmd.Parameters.AddWithValue("@Order_ID", Convert.ToInt32(randomID));
                 cmd.Parameters.AddWithValue("@CusName",  txtHoten.Text.Trim());
                 cmd.Parameters.AddWithValue("@PhoneNum", txtSdt.Text.Trim());
                 cmd.Parameters.AddWithValue("@Del_info", txtDChi.Text.Trim());
-                cmd.Parameters.AddWithValue("@User_ID", user_ID);
-                cmd.Parameters.AddWithValue("@Status_ID", 2);
-
                 cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Thêm đơn hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -240,9 +171,7 @@ namespace ProductFm
             {
                 connection.Close();
                 // clear data
-                string prevData = txtReciever.Text;
                 Clear_FormData();
-                txtReciever.Text = prevData;
             }
         }
 
@@ -268,23 +197,6 @@ namespace ProductFm
                 btnSave.Enabled = true;
             else
                 btnSave.Enabled = false;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void FmProduct_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            btnClose_Click(sender, e);
-        }
-
-        private void llbLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Hide();
-            Form frmLogin = new frmLogin();
-            frmLogin.Show();
         }
     }
 }
