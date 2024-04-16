@@ -31,12 +31,9 @@ namespace ProductFm
             Application.Exit();
         }
 
-
         // validate 
-
         public bool ValidateCredentials(string username, string password)
         {
-
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 return false; 
@@ -45,7 +42,6 @@ namespace ProductFm
             {
                 return false; 
             }
-
             return true; 
         }
 
@@ -63,17 +59,13 @@ namespace ProductFm
                 try
                 {
                     connection.Open();
-
                     using (cmd = new SqlCommand("AuthenticateUser", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
                         cmd.Parameters.AddWithValue("@inputUsername", username);
                         cmd.Parameters.AddWithValue("@inputPassword", password);
-
-                        // return a string message
+                        // return a string userId
                         string userId = (string)cmd.ExecuteScalar();
-
                         if(userId != "-1")
                         {
                             this.Hide();
@@ -82,16 +74,12 @@ namespace ProductFm
                             using ( cmd= new SqlCommand("usp_GetUserRoles", connection))
                             {
                                 cmd.CommandType = CommandType.StoredProcedure;
-
                                 cmd.Parameters.AddWithValue("@User_ID", userId);
+                                string message = "";
 
                                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-
                                 DataTable dataTable = new DataTable();
-
                                 adapter.Fill(dataTable);
-
-                                string message = "";
 
                                 string userID = dataTable.Rows[0]["User_ID"].ToString();
                                 string roleName = dataTable.Rows[0]["RoleName"].ToString();
@@ -112,10 +100,6 @@ namespace ProductFm
                                 MessageBox.Show(message, "User Roles");
 
                             }
-
-
-                            
-                            
                         } else
                         {
                             MessageBox.Show("Lỗi xác thực!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

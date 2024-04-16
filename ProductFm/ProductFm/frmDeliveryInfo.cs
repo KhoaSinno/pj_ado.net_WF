@@ -73,7 +73,6 @@ namespace ProductFm
                 //cmd.CommandText = sql;
                 //cmd.Connection = connection;
 
-                //cmd = ExcuteCommand("select * from Quan Order By Quan");
                 cmd = ExcuteCommand("sp_GetQuan");
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -152,12 +151,13 @@ namespace ProductFm
                 // Optimized 
                 cmd = ExcuteCommand("select * from Phuong where Quan_ID = @Quan_ID Order By Phuong");
 
-                param = CreateParameter("@Quan_ID", SqlDbType.Int, quan.Quan_ID);
 
                 //param = new SqlParameter();
                 //param.SqlDbType = SqlDbType.Int;
                 //param.ParameterName = "@Quan_ID";
                 //param.Value = quan.Quan_ID;
+
+                param = CreateParameter("@Quan_ID", SqlDbType.Int, quan.Quan_ID);
                 cmd.Parameters.Add(param);
                 //cmd.Parameters.AddWithValue("@Quan_ID", quan.Quan_ID);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -190,7 +190,7 @@ namespace ProductFm
 
         }
 
-        private void assign_txtReciever()
+        private void assign_txtReciever(string order_ID)
         {
             string Hoten = txtHoten.Text;
             string Sdt = txtSdt.Text;
@@ -198,7 +198,7 @@ namespace ProductFm
             string Quan_Huyen = cboQuan_Huyen.Text;
             string Phuong_Xa = cboPhuong_Xa.Text;
 
-            txtReciever.Text = $"Họ tên: {Hoten}{Environment.NewLine}" +
+            txtReciever.Text = $"Mã đơn hàng: {order_ID}{Environment.NewLine}" + $"Mã khách hàng: {user_ID}{Environment.NewLine}" + $"Họ tên: {Hoten}{Environment.NewLine}" +
                 $"Số điện thoại: {Sdt}{Environment.NewLine}" +
                 $"Địa chỉ: {DChi}{Environment.NewLine}" +
                 $"QuậnHuyện: {Quan_Huyen}{Environment.NewLine}" +
@@ -210,8 +210,7 @@ namespace ProductFm
             connection = new SqlConnection(connectionString);
             try
             {
-                // assign to textBox reciever
-                assign_txtReciever();
+                
 
                 connection.Open();
                 // insert data into db
@@ -230,6 +229,9 @@ namespace ProductFm
                 cmd.Parameters.AddWithValue("@Status_ID", 2);
 
                 cmd.ExecuteNonQuery();
+
+                // assign to textBox reciever
+                assign_txtReciever(randomID_order);
 
                 MessageBox.Show("Thêm đơn hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

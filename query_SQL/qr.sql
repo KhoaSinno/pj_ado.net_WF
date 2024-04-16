@@ -82,6 +82,31 @@ BEGIN
     WHERE u.User_ID = @User_ID;
 END;
 
+CREATE OR ALTER PROCEDURE usp_UpdateOrderStatus
+    @Status_ID int,
+    @Order_ID varchar(15)
+AS
+BEGIN
+    -- Kiểm tra tính hợp lệ của Order_ID
+    IF NOT EXISTS (SELECT 1 FROM Orders WHERE Order_ID = @Order_ID)
+    BEGIN
+        RAISERROR ('Order_ID không hợp lệ.', 16, 1)
+        RETURN
+    END
+
+    -- Cập nhật trạng thái của đơn hàng
+    BEGIN TRY
+        UPDATE Orders SET Status_ID = @Status_ID WHERE Order_ID = @Order_ID
+    END TRY
+    BEGIN CATCH
+        -- Xử lý lỗi và thông báo lỗi
+        DECLARE @ErrorMessage NVARCHAR(4000)
+        SET @ErrorMessage = ERROR_MESSAGE()
+        RAISERROR (@ErrorMessage, 16, 1)
+    END CATCH
+END;
+
+
 select * from User_Roles
 select * from Roles
 

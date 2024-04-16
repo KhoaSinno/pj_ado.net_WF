@@ -61,7 +61,7 @@
             this.cboQuan_Huyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboQuan_Huyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboQuan_Huyen.FormattingEnabled = true;
-            this.cboQuan_Huyen.Location = new System.Drawing.Point(123, 115);
+            this.cboQuan_Huyen.Location = new System.Drawing.Point(132, 115);
             this.cboQuan_Huyen.Name = "cboQuan_Huyen";
             this.cboQuan_Huyen.Size = new System.Drawing.Size(219, 26);
             this.cboQuan_Huyen.TabIndex = 1;
@@ -72,7 +72,7 @@
             this.cboPhuong_Xa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPhuong_Xa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPhuong_Xa.FormattingEnabled = true;
-            this.cboPhuong_Xa.Location = new System.Drawing.Point(123, 161);
+            this.cboPhuong_Xa.Location = new System.Drawing.Point(132, 161);
             this.cboPhuong_Xa.Name = "cboPhuong_Xa";
             this.cboPhuong_Xa.Size = new System.Drawing.Size(219, 26);
             this.cboPhuong_Xa.TabIndex = 2;
@@ -90,7 +90,7 @@
             // txtDChi
             // 
             this.txtDChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDChi.Location = new System.Drawing.Point(123, 205);
+            this.txtDChi.Location = new System.Drawing.Point(132, 205);
             this.txtDChi.Name = "txtDChi";
             this.txtDChi.Size = new System.Drawing.Size(219, 24);
             this.txtDChi.TabIndex = 3;
@@ -119,7 +119,7 @@
             // txtHoten
             // 
             this.txtHoten.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoten.Location = new System.Drawing.Point(123, 249);
+            this.txtHoten.Location = new System.Drawing.Point(132, 249);
             this.txtHoten.Name = "txtHoten";
             this.txtHoten.Size = new System.Drawing.Size(219, 24);
             this.txtHoten.TabIndex = 4;
@@ -138,7 +138,7 @@
             // txtSdt
             // 
             this.txtSdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSdt.Location = new System.Drawing.Point(123, 300);
+            this.txtSdt.Location = new System.Drawing.Point(132, 300);
             this.txtSdt.MaxLength = 10;
             this.txtSdt.Name = "txtSdt";
             this.txtSdt.Size = new System.Drawing.Size(219, 24);
@@ -176,13 +176,13 @@
             this.txtReciever.Multiline = true;
             this.txtReciever.Name = "txtReciever";
             this.txtReciever.ReadOnly = true;
-            this.txtReciever.Size = new System.Drawing.Size(303, 104);
+            this.txtReciever.Size = new System.Drawing.Size(312, 104);
             this.txtReciever.TabIndex = 13;
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(253, 487);
+            this.btnClose.Location = new System.Drawing.Point(262, 487);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(89, 36);
             this.btnClose.TabIndex = 14;

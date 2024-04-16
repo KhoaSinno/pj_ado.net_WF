@@ -56,6 +56,7 @@
             this.btnApproved.TabIndex = 0;
             this.btnApproved.Text = "Chấp nhận";
             this.btnApproved.UseVisualStyleBackColor = true;
+            this.btnApproved.Click += new System.EventHandler(this.btnApproved_Click);
             // 
             // lboPending
             // 
@@ -136,6 +137,7 @@
             this.btnRefresh.TabIndex = 2;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnReject
             // 
@@ -146,6 +148,7 @@
             this.btnReject.TabIndex = 1;
             this.btnReject.Text = "Từ chối";
             this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
             // btnClose
             // 
@@ -156,7 +159,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Thoát";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label3
             // 
